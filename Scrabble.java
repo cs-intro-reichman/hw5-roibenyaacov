@@ -64,8 +64,7 @@ public class Scrabble {
 		String Runi = "runi";
 		for (int i = 0; i < word.length(); i++) {
 			char c = word.charAt(i);
-			c -= 97;
-			score += SCRABBLE_LETTER_VALUES[c];
+			score += SCRABBLE_LETTER_VALUES[c - 'a'];
 		}
 		score *= word.length();
 		if (word.length() == HAND_SIZE) {
@@ -152,9 +151,9 @@ public class Scrabble {
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run
 		////testBuildingTheDictionary();  
-		////testScrabbleScore();    
+		testScrabbleScore();    
 		////testCreateHands();  
-		testPlayHands();
+		////testPlayHands();
 		////playGame();
 	}
 
@@ -183,6 +182,6 @@ public class Scrabble {
 		init();
 		//playHand("ocostrza");
 		//playHand("arbffip");
-		playHand("aretiin");
+		//playHand("aretiin");
 	}
 }
