@@ -48,7 +48,11 @@ public class Scrabble {
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		//// Replace the following statement with your code
+		for (int i = 0; i < NUM_OF_WORDS; i++) {
+			if (word.equals(DICTIONARY[i])){
+				return true;
+			}
+		}
 		return false;
 	}
 	
@@ -56,16 +60,31 @@ public class Scrabble {
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
-		//// Replace the following statement with your code
-		return 0;
+		int score = 0;
+		String Runi = "runi";
+		for (int i = 0; i < word.length(); i++) {
+			char c = word.charAt(i);
+			c -= 97;
+			score += SCRABBLE_LETTER_VALUES[c];
+		}
+		score *= word.length();
+		if (word.length() == HAND_SIZE) {
+			score += 50; 
+		}
+		if (MyString.subsetOf(Runi, word)) {
+			score += 1000;
+		}
+		return score;
 	}
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
-		//// Replace the following statement with your code
-		return null;
+		String Hand = MyString.randomStringOfLetters(HAND_SIZE -2); 
+		Hand = MyString.insertRandomly('a', Hand);
+		Hand = MyString.insertRandomly('e', Hand);
+		return Hand;
 	}
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
@@ -85,10 +104,24 @@ public class Scrabble {
 			// non-whitespace characters. Whitespace is either space characters, or  
 			// end-of-line characters.
 			String input = in.readString();
-			//// Replace the following break statement with code
-			//// that completes the hand playing loop
-			break;
+			if (input.equals(".")) {
+				break;
+			}
+			if (!MyString.subsetOf(input, hand)) {
+				System.out.println("Invalid word. Try again.");
+				continue;
+			}
+			if (!isWordInDictionary(input)) {
+				System.out.println("No such word in dictionary. Try again.");
+				continue;
+			}
+
+			int newScore = wordScore(input);
+			score += newScore;
+			System.out.println(input + " earned " + newScore + " points. score: " + score + " points");	
+			hand = MyString.remove(hand, input);
 		}
+
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points");
 		} else {
@@ -121,7 +154,7 @@ public class Scrabble {
 		////testBuildingTheDictionary();  
 		////testScrabbleScore();    
 		////testCreateHands();  
-		////testPlayHands();
+		testPlayHands();
 		////playGame();
 	}
 
@@ -150,6 +183,6 @@ public class Scrabble {
 		init();
 		//playHand("ocostrza");
 		//playHand("arbffip");
-		//playHand("aretiin");
+		playHand("aretiin");
 	}
 }
