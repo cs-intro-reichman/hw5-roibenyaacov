@@ -107,11 +107,11 @@ public class Scrabble {
 				break;
 			}
 			if (!MyString.subsetOf(input, hand)) {
-				System.out.println("Invalid word. Try again.");
+				System.out.println("Invalid word. Try again.\n");
 				continue;
 			}
 			if (!isWordInDictionary(input)) {
-				System.out.println("No such word in dictionary. Try again.");
+				System.out.println("No such word in dictionary. Try again.\n");
 				continue;
 			}
 
@@ -148,7 +148,7 @@ public class Scrabble {
 			} else if (input.equals("e")){
 				break;
 			} else {
-				System.out.println("Error input. Please try again.");
+				System.out.println("Error input. Please try again.\n");
 			}
 			//// Replace the following break statement with code
 			//// that completes the game playing loop
@@ -161,8 +161,8 @@ public class Scrabble {
 		////testBuildingTheDictionary();  
 		////testScrabbleScore();    
 		////testCreateHands();  
-		////testPlayHands();
-		playGame();
+		testPlayHands();
+		//playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
@@ -190,6 +190,6 @@ public class Scrabble {
 		init();
 		//playHand("ocostrza");
 		//playHand("arbffip");
-		//playHand("aretiin");
+		playHand("aretiin");
 	}
 }
