@@ -142,19 +142,27 @@ public class Scrabble {
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
 			String input = in.readString();
+			
+			if (input.equals("n")){
+				playHand(createHand());
+			} else if (input.equals("e")){
+				break;
+			} else {
+				System.out.println("Error input. Please try again.");
+			}
 			//// Replace the following break statement with code
 			//// that completes the game playing loop
-			break;
+			//break;
 		}
 	}
 
 	public static void main(String[] args) {
 		//// Uncomment the test you want to run
 		////testBuildingTheDictionary();  
-		testScrabbleScore();    
+		////testScrabbleScore();    
 		////testCreateHands();  
 		////testPlayHands();
-		////playGame();
+		playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
