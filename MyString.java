@@ -4,7 +4,7 @@
 public class MyString {
     public static void main(String args[]) {
         String hello = "hello";
-        String str5 = "committee";
+        String str5 = "committeem";
         String str6 = "meet";
 
 
@@ -104,7 +104,7 @@ public class MyString {
     /**
      * Returns a string consisting of the string str1, minus all the characters in the
      * string str2. Assumes (without checking) that str2 is a subset of str1.
-     * Example: remove("meet","committee") returns "comit" 
+     * Example: remove("meet","comimttee") returns "comit" 
      * 
      * @param str1 - a string
      * @param str2 - a string
@@ -121,7 +121,7 @@ public class MyString {
                 char c2 = str2.charAt(j);
                 if (c1 == c2) {
                     if (countChar(str1, c1) > countChar(str2, c1) ) {
-                        if (countChar(newString, c1) < countChar(str2, c1)) {
+                        if (countChar(newString, c1) < countChar(str1, c1) - countChar(str2, c1)) {
                             newString += c1;
                         }
                     }
