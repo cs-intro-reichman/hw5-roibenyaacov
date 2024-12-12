@@ -108,7 +108,6 @@ public class Scrabble {
 			}
 			if (!MyString.subsetOf(input, hand)) {
 				System.out.println("Invalid word. Try again.");
-				System.out.println();
 				continue;
 			}
 			if (!isWordInDictionary(input)) {
@@ -147,12 +146,11 @@ public class Scrabble {
 			String input = in.readString();
 			
 			if (input.equals("n")){
-				playHand(createHand());
+				String newHand = createHand();
+				playHand(newHand);
 			} else if (input.equals("e")){
 				break;
-			} else {
-				System.out.println("Error input. Please try again.\n");
-			}
+			} 
 			//// Replace the following break statement with code
 			//// that completes the game playing loop
 			//break;
