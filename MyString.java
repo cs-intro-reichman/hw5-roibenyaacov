@@ -4,10 +4,18 @@
 public class MyString {
     public static void main(String args[]) {
         String hello = "hello";
+        String str5 = "committeem";
+        String str6 = "meet";
+
+
         System.out.println(countChar(hello, 'h'));
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
+        System.out.println(randomStringOfLetters(9));
+        System.out.println(remove(str5, str6));
+        
+
         //// Put your other tests here.
     }
 
@@ -20,8 +28,13 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (ch == str.charAt(i)) {
+                count++; 
+            }
+        }
+        return count;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -35,9 +48,17 @@ public class MyString {
      * @param str2 - a string
      * @return true is str1 is a subset of str2, false otherwise
      */
-    public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+    public static boolean subsetOf(String str1, String str2) { 
+        if (str1.length() == 0){
+            return true;
+        }
+        for (int i = 0; i < str1.length(); i++) {
+            char c1= str1.charAt(i);
+            if ((countChar(str2, c1) < countChar(str1, c1) )) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /** Returns a string which is the same as the given string, with a space
@@ -49,8 +70,15 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+        String newString = "";
+        if (str.length() == 0) {
+            return newString;
+        }
+        for (int i = 0; i < str.length() -1 ; i++) {
+             newString += str.charAt(i) + " ";
+        }
+        newString = newString + str.charAt(str.length()-1);
+        return newString ;
     }
   
     /**
@@ -64,22 +92,44 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
-        return null;
+        String randomString = "";
+            for (int i = 0; i < n; i++) {
+                int randomNum = (int) (Math.random() * 26) + 1; 
+                char c = (char) (randomNum + 96);
+                randomString += c;
+            }
+        return randomString;
     }
 
     /**
      * Returns a string consisting of the string str1, minus all the characters in the
      * string str2. Assumes (without checking) that str2 is a subset of str1.
-     * Example: remove("meet","committee") returns "comit" 
+     * Example: remove("meet","comimttee") returns "comit" 
      * 
      * @param str1 - a string
      * @param str2 - a string
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        String newString = ""; 
+        for (int i = 0; i < str1.length(); i++) {
+            char c1 = str1.charAt(i);
+            if (countChar(str2, c1) == 0) {
+                newString += c1;
+            }
+             for (int j = 0; j < str2.length(); j++) {
+                char c2 = str2.charAt(j);
+                if (c1 == c2) {
+                    if (countChar(str1, c1) > countChar(str2, c1) ) {
+                        if (countChar(newString, c1) < countChar(str1, c1) - countChar(str2, c1)) {
+                            newString += c1;
+                        }
+                    }
+                }      
+            }
+        }
+      
+        return newString;
     }
 
     /**
